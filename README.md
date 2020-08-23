@@ -45,6 +45,8 @@ for i in pics:
     videowrite.write(pic)
 ```
 
+视频数据使用的是百度AI Studio上用户上传的黑客帝国片段（https://aistudio.baidu.com/aistudio/datasetdetail/38254）
+
 下面展示一个图像风格转换的示例。
 原图：
 
