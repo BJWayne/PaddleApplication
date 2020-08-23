@@ -15,6 +15,36 @@ All the models here are based on PaddlePaddle
 
 视频的处理要稍微麻烦一点，需要先使用opencv将视频切分成图片，再对图片做风格转换，最后将转换好的图片合成为视频。
 
+```python
+# 使用opencv对视频进行切分，并记录fps和尺寸，将所得图片保存至pic_data中
+video_name='data/data38254/hkdg.mp4'
+cap=cv2.VideoCapture(video_name)
+fps = cap.get(cv2.CAP_PROP_FPS)
+size = (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)),int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)))
+frame_count=1
+success=True
+while success:
+    success,frame=cap.read()
+    if success:
+        cv2.imwrite('pic_data'+'/'+'%d.jpg'%frame_count,frame)
+    frame_count+=1
+cap.release()
+```
+
+```python
+# 得到所有风格转换之后的图片，使用opencv将这些图片重新合成视频
+videowrite=cv2.VideoWriter('result.avi',cv2.VideoWriter_fourcc('D','I','V','X'), fps, size)
+pics=os.listdir('transfer_result')
+# idx=[i.split('.')[0] if len(i)>1 else continue for i in pics]
+idx=[i.split('.')[0]+'.'+i.split('.')[1] for i in pics]
+idx=[float(i[8:]) for i in idx]
+idx.sort()
+pics=['ndarray_'+str(i)+'.jpg' for i in idx]
+for i in pics:
+    pic=cv2.imread('transfer_result/'+i)
+    videowrite.write(pic)
+```
+
 下面展示一个图像风格转换的示例。
 原图：
 
@@ -30,6 +60,16 @@ All the models here are based on PaddlePaddle
 
 模板1转换之后：
 
+![transfer1](https://github.com/BJWayne/PaddleApplication/blob/PaddleHub/transfer1.png)
+
 模板2转换之后：
 
+![transfer2](https://github.com/BJWayne/PaddleApplication/blob/PaddleHub/transfer2.png)
+
 同时用模板1和模板2转换（等权重）：
+
+![transfer12](https://github.com/BJWayne/PaddleApplication/blob/PaddleHub/transfer12.png)
+
+图像转换的代码和视频转换的代码已上传
+
+百度AI Studio的项目地址为：https://aistudio.baidu.com/aistudio/projectdetail/444491
