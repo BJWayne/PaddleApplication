@@ -17,7 +17,7 @@ All the models here are based on PaddlePaddle
 
 下面展示一个图像风格转换的示例。
 原图：
-[example](https://github.com/BJWayne/PaddleApplication/blob/PaddleHub/example.jpg)
+![image](https://github.com/BJWayne/PaddleApplication/blob/PaddleHub/example.jpg)
 模板1：
 
 模板2：
