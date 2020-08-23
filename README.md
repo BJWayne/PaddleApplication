@@ -22,7 +22,11 @@ All the models here are based on PaddlePaddle
 
 模板1：
 
+![temp1](https://github.com/BJWayne/PaddleApplication/blob/PaddleHub/temp1.jpg)
+
 模板2：
+
+![temp2](https://github.com/BJWayne/PaddleApplication/blob/PaddleHub/temp2.jpg)
 
 模板1转换之后：
 
